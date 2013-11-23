@@ -1,4 +1,6 @@
 *.class
+target
+lib
 
 # Package Files #
 *.jar
