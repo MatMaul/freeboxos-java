@@ -41,7 +41,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONObject;
 import org.matmaul.freeboxos.FreeboxException;
 import org.matmaul.freeboxos.FreeboxOsClient;
-import org.matmaul.freeboxos.LoginManager;
+import org.matmaul.freeboxos.login.LoginManager;
 
 public class RestManager {
 	protected HttpClient httpClient;
@@ -55,24 +55,17 @@ public class RestManager {
 		this.baseAddress = "http://" + host + "/api/v1/";
 		httpClient = HttpClientBuilder.create().build();
 		jsonMapper = new ObjectMapper();
-		jsonMapper
-				.enable(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
-		jsonMapper.getDeserializationConfig().addHandler(
-				new DeserializationProblemHandler() {
+		jsonMapper.enable(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+		jsonMapper.getDeserializationConfig().addHandler(new DeserializationProblemHandler() {
 
-					@Override
-					public boolean handleUnknownProperty(
-							DeserializationContext ctxt,
-							JsonDeserializer<?> deserializer,
-							Object beanOrClass, String propertyName)
-							throws IOException, JsonProcessingException {
-						if ("challenge".equals(propertyName)
-								|| "password_salt".equals(propertyName)) {
-							return true;
-						}
-						return false;
-					}
-				});
+			@Override
+			public boolean handleUnknownProperty(DeserializationContext ctxt, JsonDeserializer<?> deserializer, Object beanOrClass, String propertyName) throws IOException, JsonProcessingException {
+				if ("challenge".equals(propertyName) || "password_salt".equals(propertyName)) {
+					return true;
+				}
+				return false;
+			}
+		});
 	}
 
 	public void setLoginManager(LoginManager loginManager) {
@@ -83,38 +76,29 @@ public class RestManager {
 		return baseAddress;
 	}
 
-	public static HttpEntity createMultipartEntity(InputStream content,
-			long length, String fileName) throws IOException {
-		return MultipartEntityBuilder
-				.create()
-				.addPart(fileName,
-						new InpuStreamBody(content, length, fileName)).build();
+	public static HttpEntity createMultipartEntity(InputStream content, long length, String fileName) throws IOException {
+		return MultipartEntityBuilder.create().addPart(fileName, new InpuStreamBody(content, length, fileName)).build();
 	}
 
 	public static HttpEntity createJsonEntity(JSONObject jsonObj) {
-		return new StringEntity(jsonObj.toString(),
-				ContentType.APPLICATION_JSON);
+		return new StringEntity(jsonObj.toString(), ContentType.APPLICATION_JSON);
 	}
 
-	public <T extends Response<F>, F> F delete(String path, Class<T> beanClass)
-			throws FreeboxException {
+	public <T extends Response<F>, F> F delete(String path, Class<T> beanClass) throws FreeboxException {
 		HttpDelete delete = new HttpDelete(getBaseAddress() + path);
 		return execute(delete, beanClass, true);
 	}
 
-	public <T extends Response<F>, F> F get(String path, Class<T> beanClass)
-			throws FreeboxException {
+	public <T extends Response<F>, F> F get(String path, Class<T> beanClass) throws FreeboxException {
 		return get(path, beanClass, true);
 	}
 
-	public <T extends Response<F>, F> F get(String path, Class<T> beanClass,
-			boolean retryAuth) throws FreeboxException {
+	public <T extends Response<F>, F> F get(String path, Class<T> beanClass, boolean retryAuth) throws FreeboxException {
 		HttpGet get = new HttpGet(getBaseAddress() + path);
 		return execute(get, beanClass, retryAuth);
 	}
 
-	protected <T extends Response<F>, F> F readValue(InputStream content,
-			Class<T> beanClass) throws IOException, FreeboxException {
+	protected <T extends Response<F>, F> F readValue(InputStream content, Class<T> beanClass) throws IOException, FreeboxException {
 		T response = jsonMapper.readValue(content, beanClass);
 		response.evaluate();
 		F result = response.getResult();
@@ -124,13 +108,11 @@ public class RestManager {
 		return result;
 	}
 
-	public <T extends Response<F>, F> F post(String path, HttpEntity entity,
-			Class<T> beanClass) throws FreeboxException {
+	public <T extends Response<F>, F> F post(String path, HttpEntity entity, Class<T> beanClass) throws FreeboxException {
 		return post(path, entity, beanClass, true);
 	}
 
-	public <T extends Response<F>, F> F post(String path, HttpEntity entity,
-			Class<T> beanClass, boolean retryAuth) throws FreeboxException {
+	public <T extends Response<F>, F> F post(String path, HttpEntity entity, Class<T> beanClass, boolean retryAuth) throws FreeboxException {
 		HttpPost post = new HttpPost(getBaseAddress() + path);
 		post.setEntity(entity);
 		return execute(post, beanClass, retryAuth);
@@ -138,8 +120,7 @@ public class RestManager {
 
 	public static final String AUTHORIZATION_REQUIRED = "auth_required";
 
-	public InputStream execute(HttpUriRequest req, boolean retryAuth)
-			throws FreeboxException {
+	public InputStream execute(HttpUriRequest req, boolean retryAuth) throws FreeboxException {
 		if (loginManager.getSessionToken() != null) {
 			req.addHeader(getAuthHeader(), loginManager.getSessionToken());
 		}
@@ -153,8 +134,7 @@ public class RestManager {
 
 	}
 
-	public <T extends Response<F>, F> F execute(HttpUriRequest req,
-			Class<T> beanClass, boolean retryAuth) throws FreeboxException {
+	public <T extends Response<F>, F> F execute(HttpUriRequest req, Class<T> beanClass, boolean retryAuth) throws FreeboxException {
 		try {
 			return readValue(execute(req, retryAuth), beanClass);
 		} catch (FreeboxException e) {

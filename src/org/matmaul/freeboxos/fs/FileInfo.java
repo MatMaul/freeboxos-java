@@ -152,7 +152,6 @@ public class FileInfo extends ActiveBean {
 	}
 
 	public static String encodePath(String path) {
-		return Base64
-				.encodeBase64String(path.getBytes(Charset.forName("UTF-8")));
+		return Base64.encodeBase64String(path.getBytes(Charset.forName("UTF-8")));
 	}
 }

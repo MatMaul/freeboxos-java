@@ -16,41 +16,33 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.internal;
+package org.matmaul.freeboxos.login;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * @author matmaul
  * 
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
-public class Session {
-	protected String session_token;
-	protected Permissions permissions;
+@JsonIgnoreProperties({ "password_salt", "challenge" })
+public class Authorize {
+	protected String app_token;
+	protected int track_id;
 
 	/**
-	 * @return the session_token
+	 * @return the app_token
 	 */
-	public String getSessionToken() {
-		return session_token;
+	public String getAppToken() {
+		return app_token;
 	}
 
 	/**
-	 * @return the permissions
+	 * @return the track_id
 	 */
-	public Permissions getPermissions() {
-		return permissions;
-	}
-
-	@JsonAutoDetect(fieldVisibility = Visibility.ANY)
-	public static class Permissions {
-		protected boolean downloader;
-		protected boolean settings;
-		protected boolean contacts;
-		protected boolean calls;
-		protected boolean explorer;
-		protected boolean parental;
+	public int getTrackId() {
+		return track_id;
 	}
 }

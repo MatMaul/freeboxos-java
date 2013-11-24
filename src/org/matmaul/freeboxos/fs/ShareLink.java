@@ -16,31 +16,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.internal;
+package org.matmaul.freeboxos.fs;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
-/**
- * @author matmaul
- * 
- */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
-public class TrackAuthorize {
-	protected String status;
-	protected String challenge;
-
-	/**
-	 * @return the status
-	 */
-	public String getStatus() {
-		return status;
-	}
-
-	/**
-	 * @return the challenge
-	 */
-	public String getChallenge() {
-		return challenge;
-	}
+public class ShareLink {
+	protected String token;
+	protected String path;
+	protected String name;
+	protected long expire;
+	protected String fullurl;
 }

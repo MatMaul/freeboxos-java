@@ -16,16 +16,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos;
+package org.matmaul.freeboxos.login;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Hex;
 import org.json.simple.JSONObject;
-import org.matmaul.freeboxos.internal.Responses;
+import org.matmaul.freeboxos.FreeboxException;
 import org.matmaul.freeboxos.internal.RestManager;
-import org.matmaul.freeboxos.internal.Session;
 
 public class LoginManager {
 
@@ -41,16 +40,13 @@ public class LoginManager {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Authorize newAuthorize(String appName, String appVersion,
-			String deviceName) throws FreeboxException {
+	public Authorize newAuthorize(String appName, String appVersion, String deviceName) throws FreeboxException {
 		JSONObject req = new JSONObject();
 		req.put("app_id", appId);
 		req.put("app_name", appName);
 		req.put("app_version", appVersion);
 		req.put("device_name", deviceName);
-		Authorize authorize = restManager.post("login/authorize/",
-				RestManager.createJsonEntity(req),
-				Responses.AuthorizeResponse.class, false);
+		Authorize authorize = restManager.post("login/authorize/", RestManager.createJsonEntity(req), LoginResponses.AuthorizeResponse.class, false);
 		setTrackId(authorize.getTrackId());
 		setAppToken(authorize.getAppToken());
 		return authorize;
@@ -78,8 +74,11 @@ public class LoginManager {
 		if (trackId == null) {
 			throw new FreeboxException(null, "no trackId");
 		}
-		return restManager.get("login/authorize/" + trackId,
-				Responses.TrackAuthorizeResponse.class, false).getStatus();
+		return restManager.get("login/authorize/" + trackId, LoginResponses.TrackAuthorizeResponse.class, false).getStatus();
+	}
+
+	protected String login() throws FreeboxException {
+		return restManager.get("login/", LoginResponses.ChallengeResponse.class, false).getChallenge();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -92,9 +91,7 @@ public class LoginManager {
 		req.put("app_id", appId);
 		req.put("password", hmacSha1(appToken, challenge));
 
-		Session session = restManager.post("login/session/",
-				RestManager.createJsonEntity(req),
-				Responses.SessionResponse.class, false);
+		Session session = restManager.post("login/session/", RestManager.createJsonEntity(req), LoginResponses.SessionResponse.class, false);
 		sessionToken = session.getSessionToken();
 		return sessionToken;
 	}
@@ -120,10 +117,5 @@ public class LoginManager {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}
-
-	protected String login() throws FreeboxException {
-		return restManager.get("login/", Responses.ChallengeResponse.class,
-				false).getChallenge();
 	}
 }

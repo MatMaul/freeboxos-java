@@ -16,39 +16,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.internal;
+package org.matmaul.freeboxos.fs;
 
 import java.util.List;
 
-import org.matmaul.freeboxos.Authorize;
-import org.matmaul.freeboxos.fs.FileInfo;
-import org.matmaul.freeboxos.fs.FileUpload;
-import org.matmaul.freeboxos.fs.FsTask;
+import org.matmaul.freeboxos.internal.Response;
 
-/**
- * @author matmaul
- * 
- */
-public class Responses {
-	public static class ChallengeResponse extends Response<Challenge> {
-	}
-
-	public static class SessionResponse extends Response<Session> {
-	}
-
-	public static class TrackAuthorizeResponse extends Response<TrackAuthorize> {
-	}
-
-	public static class AuthorizeResponse extends Response<Authorize> {
-	}
-
+public class FsResponses {
 	public static class FileInfosResponse extends Response<List<FileInfo>> {
 	}
 
 	public static class FileInfoResponse extends Response<FileInfo> {
-	}
-
-	public static class IdHolderResponse extends Response<IdHolder> {
 	}
 
 	public static class FileUploadsResponse extends Response<List<FileUpload>> {
@@ -61,5 +39,11 @@ public class Responses {
 	}
 
 	public static class FsTaskResponse extends Response<FsTask> {
+	}
+
+	public static class ShareLinksResponse extends Response<List<ShareLink>> {
+	}
+
+	public static class ShareLinkResponse extends Response<ShareLink> {
 	}
 }

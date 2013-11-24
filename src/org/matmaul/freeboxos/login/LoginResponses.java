@@ -16,19 +16,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.internal;
+package org.matmaul.freeboxos.login;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
+import org.matmaul.freeboxos.internal.Response;
 
-@JsonAutoDetect(fieldVisibility = Visibility.ANY)
-public class IdHolder {
-	protected long id;
-
-	public long getId() {
-		return id;
+public class LoginResponses {
+	public static class ChallengeResponse extends Response<Challenge> {
 	}
-	
-	public static class Response extends org.matmaul.freeboxos.internal.Response<IdHolder> {
+
+	public static class SessionResponse extends Response<Session> {
+	}
+
+	public static class TrackAuthorizeResponse extends Response<TrackAuthorize> {
+	}
+
+	public static class AuthorizeResponse extends Response<Authorize> {
 	}
 }

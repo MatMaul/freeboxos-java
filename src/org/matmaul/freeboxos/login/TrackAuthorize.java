@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.internal;
+package org.matmaul.freeboxos.login;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
@@ -26,12 +26,15 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
  * 
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
-public class Challenge {
-	protected boolean logged_in;
+public class TrackAuthorize {
+	protected String status;
 	protected String challenge;
 
-	public boolean isLoggedIn() {
-		return logged_in;
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
 	}
 
 	/**
