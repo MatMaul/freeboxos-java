@@ -23,7 +23,7 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
 /**
  * @author matmaul
- *
+ * 
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Session {
@@ -43,7 +43,7 @@ public class Session {
 	public Permissions getPermissions() {
 		return permissions;
 	}
-	
+
 	@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 	public static class Permissions {
 		protected boolean downloader;

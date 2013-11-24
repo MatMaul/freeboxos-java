@@ -23,13 +23,13 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
 /**
  * @author matmaul
- *
+ * 
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Challenge {
 	protected boolean logged_in;
 	protected String challenge;
-	
+
 	public boolean isLoggedIn() {
 		return logged_in;
 	}

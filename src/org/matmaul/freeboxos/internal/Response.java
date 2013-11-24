@@ -24,7 +24,7 @@ import org.matmaul.freeboxos.FreeboxException;
 
 /**
  * @author matmaul
- *
+ * 
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Response<T> {
@@ -36,7 +36,7 @@ public class Response<T> {
 
 	/**
 	 * @return the result
-	 * @throws FreeboxException 
+	 * @throws FreeboxException
 	 */
 	public T getResult() {
 		return result;
@@ -73,7 +73,9 @@ public class Response<T> {
 		return msg;
 	}
 
-	public static class StringResponse extends Response<String> {}
+	public static class StringResponse extends Response<String> {
+	}
 
-	public static class EmptyResponse extends Response<Object> {}
+	public static class EmptyResponse extends Response<Object> {
+	}
 }

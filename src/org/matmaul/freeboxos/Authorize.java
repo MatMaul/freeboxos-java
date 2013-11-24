@@ -24,21 +24,21 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * @author matmaul
- *
+ * 
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 @JsonIgnoreProperties({ "password_salt", "challenge" })
 public class Authorize {
 	protected String app_token;
 	protected int track_id;
-	
+
 	/**
 	 * @return the app_token
 	 */
 	public String getAppToken() {
 		return app_token;
 	}
-	
+
 	/**
 	 * @return the track_id
 	 */

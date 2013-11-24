@@ -24,7 +24,7 @@ import org.matmaul.freeboxos.FreeboxOsClient;
 public abstract class ActiveBean {
 	@JsonIgnore
 	protected FreeboxOsClient client;
-	
+
 	public void setClient(FreeboxOsClient client) {
 		this.client = client;
 	}

@@ -41,18 +41,20 @@ public class LoginManager {
 	}
 
 	@SuppressWarnings("unchecked")
-	public Authorize newAuthorize(String appName, String appVersion, String deviceName) throws FreeboxException {
+	public Authorize newAuthorize(String appName, String appVersion,
+			String deviceName) throws FreeboxException {
 		JSONObject req = new JSONObject();
 		req.put("app_id", appId);
 		req.put("app_name", appName);
 		req.put("app_version", appVersion);
 		req.put("device_name", deviceName);
-		Authorize authorize = restManager.post("login/authorize/", RestManager.createJsonEntity(req), Responses.AuthorizeResponse.class, false);
+		Authorize authorize = restManager.post("login/authorize/",
+				RestManager.createJsonEntity(req),
+				Responses.AuthorizeResponse.class, false);
 		setTrackId(authorize.getTrackId());
 		setAppToken(authorize.getAppToken());
 		return authorize;
 	}
-
 
 	public void setTrackId(int trackId) {
 		this.trackId = trackId;
@@ -76,7 +78,8 @@ public class LoginManager {
 		if (trackId == null) {
 			throw new FreeboxException(null, "no trackId");
 		}
-		return restManager.get("login/authorize/" + trackId, Responses.TrackAuthorizeResponse.class, false).getStatus();
+		return restManager.get("login/authorize/" + trackId,
+				Responses.TrackAuthorizeResponse.class, false).getStatus();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -89,16 +92,17 @@ public class LoginManager {
 		req.put("app_id", appId);
 		req.put("password", hmacSha1(appToken, challenge));
 
-		Session session = restManager.post("login/session/", RestManager.createJsonEntity(req), Responses.SessionResponse.class, false);
+		Session session = restManager.post("login/session/",
+				RestManager.createJsonEntity(req),
+				Responses.SessionResponse.class, false);
 		sessionToken = session.getSessionToken();
 		return sessionToken;
 	}
 
-
 	protected static String hmacSha1(String key, String value) {
 		try {
 			// Get an hmac_sha1 key from the raw key bytes
-			byte[] keyBytes = key.getBytes();           
+			byte[] keyBytes = key.getBytes();
 			SecretKeySpec signingKey = new SecretKeySpec(keyBytes, "HmacSHA1");
 
 			// Get an hmac_sha1 Mac instance and initialize with the signing key
@@ -111,7 +115,7 @@ public class LoginManager {
 			// Convert raw bytes to Hex
 			byte[] hexBytes = new Hex().encode(rawHmac);
 
-			//  Covert array of Hex bytes to a String
+			// Covert array of Hex bytes to a String
 			return new String(hexBytes, "UTF-8");
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -119,6 +123,7 @@ public class LoginManager {
 	}
 
 	protected String login() throws FreeboxException {
-		return restManager.get("login/", Responses.ChallengeResponse.class, false).getChallenge();
+		return restManager.get("login/", Responses.ChallengeResponse.class,
+				false).getChallenge();
 	}
 }

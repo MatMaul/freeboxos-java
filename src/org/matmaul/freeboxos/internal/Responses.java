@@ -27,18 +27,39 @@ import org.matmaul.freeboxos.fs.FsTask;
 
 /**
  * @author matmaul
- *
+ * 
  */
 public class Responses {
-	public static class ChallengeResponse extends Response<Challenge> {}
-	public static class SessionResponse extends Response<Session> {}
-	public static class TrackAuthorizeResponse extends Response<TrackAuthorize> {}
-	public static class AuthorizeResponse extends Response<Authorize> {}
-	public static class FileInfosResponse extends Response<List<FileInfo>> {}
-	public static class FileInfoResponse extends Response<FileInfo> {}
-	public static class IdHolderResponse extends Response<IdHolder> {}
-	public static class FileUploadsResponse extends Response<List<FileUpload>> {}
-	public static class FileUploadResponse extends Response<FileUpload> {}
-	public static class FsTasksResponse extends Response<List<FsTask>> {}
-	public static class FsTaskResponse extends Response<FsTask> {}
+	public static class ChallengeResponse extends Response<Challenge> {
+	}
+
+	public static class SessionResponse extends Response<Session> {
+	}
+
+	public static class TrackAuthorizeResponse extends Response<TrackAuthorize> {
+	}
+
+	public static class AuthorizeResponse extends Response<Authorize> {
+	}
+
+	public static class FileInfosResponse extends Response<List<FileInfo>> {
+	}
+
+	public static class FileInfoResponse extends Response<FileInfo> {
+	}
+
+	public static class IdHolderResponse extends Response<IdHolder> {
+	}
+
+	public static class FileUploadsResponse extends Response<List<FileUpload>> {
+	}
+
+	public static class FileUploadResponse extends Response<FileUpload> {
+	}
+
+	public static class FsTasksResponse extends Response<List<FsTask>> {
+	}
+
+	public static class FsTaskResponse extends Response<FsTask> {
+	}
 }

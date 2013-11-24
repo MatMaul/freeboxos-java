@@ -23,7 +23,7 @@ import org.matmaul.freeboxos.internal.RestManager;
 
 /**
  * @author matmaul
- *
+ * 
  */
 public class FreeboxOsClient {
 	protected FsManager fsManager;
@@ -33,18 +33,18 @@ public class FreeboxOsClient {
 	public FreeboxOsClient(String appId) {
 		this(appId, "mafreebox.freebox.fr");
 	}
-	
+
 	public FreeboxOsClient(String appId, String host) {
 		restManager = new RestManager(this, host);
 		loginManager = new LoginManager(appId, restManager);
-		restManager.setLoginManager(loginManager);;
+		restManager.setLoginManager(loginManager);
 		fsManager = new FsManager(restManager);
 	}
-	
+
 	public LoginManager getLoginManager() {
 		return loginManager;
 	}
-	
+
 	public RestManager getRestManager() {
 		return restManager;
 	}

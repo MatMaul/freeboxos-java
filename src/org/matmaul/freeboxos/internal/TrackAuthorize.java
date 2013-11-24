@@ -23,13 +23,13 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
 /**
  * @author matmaul
- *
+ * 
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class TrackAuthorize {
 	protected String status;
 	protected String challenge;
-	
+
 	/**
 	 * @return the status
 	 */

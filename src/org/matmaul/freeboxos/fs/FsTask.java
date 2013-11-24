@@ -40,55 +40,71 @@ public class FsTask {
 	protected long total_bytes_done;
 	protected long curr_bytes;
 	protected long curr_bytes_done;
-	
+
 	public long getId() {
 		return id;
 	}
+
 	public long getCreatedTimestamp() {
 		return created_ts;
 	}
+
 	public long getStartedTimestamp() {
 		return started_ts;
 	}
+
 	public long getDoneTimestamp() {
 		return done_ts;
 	}
+
 	public int getDuration() {
 		return duration;
 	}
+
 	public int getProgress() {
 		return progress;
 	}
+
 	public int getEta() {
 		return eta;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public String getState() {
 		return state;
 	}
+
 	public String getError() {
 		return error;
 	}
+
 	public String getFrom() {
 		return from;
 	}
+
 	public int getNfiles() {
 		return nfiles;
 	}
+
 	public int getNfilesDone() {
 		return nfiles_done;
 	}
+
 	public long getTotalBytes() {
 		return total_bytes;
 	}
+
 	public long getTotalBytesDone() {
 		return total_bytes_done;
 	}
+
 	public long getCurrentBytes() {
 		return curr_bytes;
 	}
+
 	public long getCurrentBytesDone() {
 		return curr_bytes_done;
 	}

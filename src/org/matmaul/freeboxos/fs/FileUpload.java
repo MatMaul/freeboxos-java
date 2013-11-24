@@ -31,35 +31,35 @@ public class FileUpload {
 	protected String status;
 	protected String dirname;
 	protected String upload_name;
-	
+
 	public long getId() {
 		return id;
 	}
-	
+
 	public long getLastUpdate() {
 		return last_update;
 	}
-	
+
 	public String getDirname() {
 		return dirname;
 	}
-	
+
 	public long getStartDate() {
 		return start_date;
 	}
-	
+
 	public String getUploadName() {
 		return upload_name;
 	}
-	
+
 	public long getUploaded() {
 		return uploaded;
 	}
-	
+
 	public long getSize() {
 		return size;
 	}
-	
+
 	public String getStatus() {
 		return status;
 	}

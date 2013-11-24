@@ -32,26 +32,25 @@ import org.matmaul.freeboxos.internal.ActiveBean;
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
 
-
 /**
  * @author matmaul
- *
+ * 
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class FileInfo extends ActiveBean {
-	
-    protected String type;
-    protected boolean link;
-    protected boolean hidden;
-    protected String parent;
-    protected String mimetype;
-    protected String name;
-    protected String target;
-    protected String path;
-    protected long modification;
-    protected long size;
-    protected long index;
-    
+
+	protected String type;
+	protected boolean link;
+	protected boolean hidden;
+	protected String parent;
+	protected String mimetype;
+	protected String name;
+	protected String target;
+	protected String path;
+	protected long modification;
+	protected long size;
+	protected long index;
+
 	/**
 	 * @return the type
 	 */
@@ -128,17 +127,17 @@ public class FileInfo extends ActiveBean {
 	public long getIndex() {
 		return index;
 	}
-	
+
 	public static FileInfo create(String path) {
 		FileInfo fi = new FileInfo();
 		fi.path = encodePath(path);
 		return fi;
 	}
-	
+
 	public Map<String, FileInfo> ls() throws FreeboxException {
 		return client.getFsManager().ls(this);
 	}
-	
+
 	public InputStream download() throws FreeboxException {
 		return client.getFsManager().download(this);
 	}
@@ -153,6 +152,7 @@ public class FileInfo extends ActiveBean {
 	}
 
 	public static String encodePath(String path) {
-		return Base64.encodeBase64String(path.getBytes(Charset.forName("UTF-8")));
+		return Base64
+				.encodeBase64String(path.getBytes(Charset.forName("UTF-8")));
 	}
 }

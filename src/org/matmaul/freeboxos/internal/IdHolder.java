@@ -24,7 +24,7 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class IdHolder {
 	protected long id;
-	
+
 	public long getId() {
 		return id;
 	}

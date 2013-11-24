@@ -20,7 +20,7 @@ package org.matmaul.freeboxos;
 
 /**
  * @author matmaul
- *
+ * 
  */
 public class FreeboxException extends Exception {
 
@@ -37,7 +37,7 @@ public class FreeboxException extends Exception {
 		super(msg);
 		this.errorCode = errorCode;
 	}
-	
+
 	/**
 	 * 
 	 */
