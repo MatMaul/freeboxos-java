@@ -21,7 +21,6 @@ package org.matmaul.freeboxos.internal;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -40,8 +39,8 @@ import org.codehaus.jackson.map.DeserializationProblemHandler;
 import org.codehaus.jackson.map.JsonDeserializer;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONObject;
-import org.matmaul.freeboxos.FreeboxOsClient;
 import org.matmaul.freeboxos.FreeboxException;
+import org.matmaul.freeboxos.FreeboxOsClient;
 import org.matmaul.freeboxos.LoginManager;
 
 public class RestManager {
@@ -81,8 +80,8 @@ public class RestManager {
 		return baseAddress;
 	}
 	
-	public static  HttpEntity createMultipartEntity(InputStream content, String fileName) throws IOException {
-		return MultipartEntityBuilder.create().addBinaryBody(fileName, IOUtils.toByteArray(content), ContentType.DEFAULT_BINARY, fileName).build();
+	public static  HttpEntity createMultipartEntity(InputStream content, long length, String fileName) throws IOException {
+		return MultipartEntityBuilder.create().addPart(fileName, new InpuStreamBody(content, length, fileName)).build();
 	}
 
 	public static HttpEntity createJsonEntity(JSONObject jsonObj) {

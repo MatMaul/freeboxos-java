@@ -146,7 +146,7 @@ public class FsManager {
 		req.put("upload_name", fileName);
 		long uploadId = restManager.post("upload/", RestManager.createJsonEntity(req), Responses.IdHolderResponse.class).getId();
 		try {
-			restManager.post("upload/" + uploadId + "/send", RestManager.createMultipartEntity(content, fileName), EmptyResponse.class);
+			restManager.post("upload/" + uploadId + "/send", RestManager.createMultipartEntity(content, length, fileName), EmptyResponse.class);
 		} catch (IOException e) {
 			throw new FreeboxException("", "Erreur de la lecture de l'input stream");
 		}
