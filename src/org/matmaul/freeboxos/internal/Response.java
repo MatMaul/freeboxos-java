@@ -28,10 +28,11 @@ import org.matmaul.freeboxos.FreeboxException;
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Response<T> {
-	protected boolean success;
+	protected Boolean success;
 	protected String error_code;
 	protected String uid;
 	protected String msg;
+	protected String missing_right;
 	protected T result;
 
 	/**
@@ -44,7 +45,7 @@ public class Response<T> {
 
 	public void evaluate() throws FreeboxException {
 		if (!isSuccess()) {
-			throw new FreeboxException(getErrorCode(), getMsg());
+			throw new FreeboxException(this);
 		}
 	}
 
@@ -55,8 +56,12 @@ public class Response<T> {
 	/**
 	 * @return the success
 	 */
-	public boolean isSuccess() {
+	public Boolean isSuccess() {
 		return success;
+	}
+
+	public String getMissingRight() {
+		return missing_right;
 	}
 
 	/**

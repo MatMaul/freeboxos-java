@@ -72,7 +72,7 @@ public class FsManager {
 		req.put("dst", dstFolder.getPath());
 		req.put("mode", conflictMode);
 
-		return restManager.post("fs/mv/", RestManager.createJsonEntity(req), FsResponses.FsTaskResponse.class);
+		return restManager.post("fs/mv/", restManager.createJsonEntity(req), FsResponses.FsTaskResponse.class);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -85,7 +85,7 @@ public class FsManager {
 			}
 		}));
 
-		return restManager.post("fs/rm/", RestManager.createJsonEntity(req), FsResponses.FsTaskResponse.class);
+		return restManager.post("fs/rm/", restManager.createJsonEntity(req), FsResponses.FsTaskResponse.class);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -102,7 +102,7 @@ public class FsManager {
 		req.put("dst", dstFolder.getPath());
 		req.put("mode", conflictMode);
 
-		return restManager.post("fs/cp/", RestManager.createJsonEntity(req), FsResponses.FsTaskResponse.class);
+		return restManager.post("fs/cp/", restManager.createJsonEntity(req), FsResponses.FsTaskResponse.class);
 	}
 
 	protected Map<String, FileInfo> lsEncoded(String encodedPath) throws FreeboxException {
@@ -130,7 +130,7 @@ public class FsManager {
 		req.put("src", file.getPath());
 		req.put("dst", newName);
 
-		return restManager.post("fs/rename/", RestManager.createJsonEntity(req), Response.StringResponse.class);
+		return restManager.post("fs/rename/", restManager.createJsonEntity(req), Response.StringResponse.class);
 	}
 
 	public InputStream download(FileInfo file) throws FreeboxException {
@@ -144,7 +144,7 @@ public class FsManager {
 		req.put("parent", parent.getPath());
 		req.put("dirname", dirName);
 
-		restManager.post("fs/mkdir/", RestManager.createJsonEntity(req), EmptyResponse.class);
+		restManager.post("fs/mkdir/", restManager.createJsonEntity(req), EmptyResponse.class);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -152,11 +152,11 @@ public class FsManager {
 		JSONObject req = new JSONObject();
 		req.put("dirname", folder.getPath());
 		req.put("upload_name", fileName);
-		long uploadId = restManager.post("upload/", RestManager.createJsonEntity(req), IdHolder.Response.class).getId();
+		long uploadId = restManager.post("upload/", restManager.createJsonEntity(req), IdHolder.Response.class).getId();
 		try {
-			restManager.post("upload/" + uploadId + "/send", RestManager.createMultipartEntity(content, length, fileName), EmptyResponse.class);
+			restManager.post("upload/" + uploadId + "/send", restManager.createMultipartEntity(content, length, fileName), EmptyResponse.class);
 		} catch (IOException e) {
-			throw new FreeboxException("", "Erreur de la lecture de l'input stream");
+			throw new FreeboxException("Erreur de la lecture de l'input stream");
 		}
 		return uploadId;
 	}

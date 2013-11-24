@@ -26,6 +26,6 @@ public class ShareLink {
 	protected String token;
 	protected String path;
 	protected String name;
-	protected long expire;
+	protected Long expire;
 	protected String fullurl;
 }

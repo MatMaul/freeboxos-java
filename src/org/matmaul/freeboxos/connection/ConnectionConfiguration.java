@@ -23,30 +23,34 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class ConnectionConfiguration {
-	protected boolean ping;
-	protected boolean is_secure_pass;
-	protected boolean remote_access;
-	protected int remote_access_port;
+	protected Boolean ping;
+	protected Boolean is_secure_pass;
+	protected Boolean remote_access;
+	protected Integer remote_access_port;
 	protected String remote_access_ip;
-	protected boolean api_remote_access;
-	protected boolean wol;
-	protected boolean adblock;
-	protected boolean adblock_not_set;
-	protected boolean allow_token_request;
+	protected Boolean api_remote_access;
+	protected Boolean wol;
+	protected Boolean adblock;
+	protected Boolean adblock_not_set;
+	protected Boolean allow_token_request;
 
-	public boolean isPing() {
+	public Boolean isPing() {
 		return ping;
 	}
 
-	public boolean isSecurePass() {
+	public void setPing(Boolean ping) {
+		this.ping = ping;
+	}
+
+	public Boolean isSecurePass() {
 		return is_secure_pass;
 	}
 
-	public boolean isRemoteAccess() {
+	public Boolean isRemoteAccess() {
 		return remote_access;
 	}
 
-	public int getRemoteAccessPort() {
+	public Integer getRemoteAccessPort() {
 		return remote_access_port;
 	}
 
@@ -54,23 +58,27 @@ public class ConnectionConfiguration {
 		return remote_access_ip;
 	}
 
-	public boolean isApiRemoteAccess() {
+	public Boolean isApiRemoteAccess() {
 		return api_remote_access;
 	}
 
-	public boolean isWol() {
+	public Boolean isWol() {
 		return wol;
 	}
 
-	public boolean isAdblock() {
+	public void setWol(Boolean wol) {
+		this.wol = wol;
+	}
+
+	public Boolean isAdblock() {
 		return adblock;
 	}
 
-	public boolean isAdblockNotSet() {
+	public Boolean isAdblockNotSet() {
 		return adblock_not_set;
 	}
 
-	public boolean isAllowTokenRequest() {
+	public Boolean isAllowTokenRequest() {
 		return allow_token_request;
 	}
 }

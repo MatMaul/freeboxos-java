@@ -18,37 +18,36 @@
  */
 package org.matmaul.freeboxos;
 
+import org.matmaul.freeboxos.internal.Response;
+
 /**
  * @author matmaul
  * 
  */
 public class FreeboxException extends Exception {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5403009193715290205L;
-	protected String errorCode;
 
-	/**
-	 * 
-	 */
-	public FreeboxException(String errorCode, String msg) {
+	protected Response<?> response;
+
+	public FreeboxException(String msg) {
 		super(msg);
-		this.errorCode = errorCode;
 	}
 
-	/**
-	 * 
-	 */
 	public FreeboxException(Throwable t) {
 		super(t);
 	}
 
-	/**
-	 * @return the errorCode
-	 */
-	public String getErrorCode() {
-		return errorCode;
+	public FreeboxException(String msg, Throwable t) {
+		super(msg, t);
+	}
+
+	public FreeboxException(Response<?> response) {
+		super(response.getMsg());
+		this.response = response;
+	}
+
+	public Response<?> getResponse() {
+		return response;
 	}
 }

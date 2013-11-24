@@ -40,16 +40,16 @@ import com.google.common.collect.Collections2;
 public class FileInfo extends ActiveBean {
 
 	protected String type;
-	protected boolean link;
-	protected boolean hidden;
+	protected Boolean link;
+	protected Boolean hidden;
 	protected String parent;
 	protected String mimetype;
 	protected String name;
 	protected String target;
 	protected String path;
-	protected long modification;
-	protected long size;
-	protected long index;
+	protected Long modification;
+	protected Long size;
+	protected Long index;
 
 	/**
 	 * @return the type
@@ -61,14 +61,14 @@ public class FileInfo extends ActiveBean {
 	/**
 	 * @return the link
 	 */
-	public boolean isLink() {
+	public Boolean isLink() {
 		return link;
 	}
 
 	/**
 	 * @return the hidden
 	 */
-	public boolean isHidden() {
+	public Boolean isHidden() {
 		return hidden;
 	}
 
@@ -110,21 +110,21 @@ public class FileInfo extends ActiveBean {
 	/**
 	 * @return the modification
 	 */
-	public long getModification() {
+	public Long getModification() {
 		return modification;
 	}
 
 	/**
 	 * @return the size
 	 */
-	public long getSize() {
+	public Long getSize() {
 		return size;
 	}
 
 	/**
 	 * @return the index
 	 */
-	public long getIndex() {
+	public Long getIndex() {
 		return index;
 	}
 

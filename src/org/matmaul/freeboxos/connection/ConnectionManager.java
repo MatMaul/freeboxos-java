@@ -28,7 +28,11 @@ public class ConnectionManager {
 		this.restManager = restManager;
 	}
 
-	public ConnectionConfiguration getCurrentConfiguration() throws FreeboxException {
+	public ConnectionConfiguration getConfiguration() throws FreeboxException {
 		return restManager.get("connection/config/", ConnectionResponses.ConnectionConfigurationResponse.class);
+	}
+
+	public ConnectionConfiguration updateConfiguration(ConnectionConfiguration configuration) throws FreeboxException {
+		return restManager.put("connection/config/", restManager.createJsonEntity(configuration), ConnectionResponses.ConnectionConfigurationResponse.class);
 	}
 }

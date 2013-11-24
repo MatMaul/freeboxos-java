@@ -46,11 +46,11 @@ public class Session {
 
 	@JsonAutoDetect(fieldVisibility = Visibility.ANY)
 	public static class Permissions {
-		protected boolean downloader;
-		protected boolean settings;
-		protected boolean contacts;
-		protected boolean calls;
-		protected boolean explorer;
-		protected boolean parental;
+		protected Boolean downloader;
+		protected Boolean settings;
+		protected Boolean contacts;
+		protected Boolean calls;
+		protected Boolean explorer;
+		protected Boolean parental;
 	}
 }

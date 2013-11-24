@@ -27,10 +27,10 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class Challenge {
-	protected boolean logged_in;
+	protected Boolean logged_in;
 	protected String challenge;
 
-	public boolean isLoggedIn() {
+	public Boolean isLoggedIn() {
 		return logged_in;
 	}
 

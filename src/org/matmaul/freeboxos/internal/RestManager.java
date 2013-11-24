@@ -20,6 +20,7 @@ package org.matmaul.freeboxos.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringWriter;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -27,6 +28,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
@@ -38,6 +40,7 @@ import org.codehaus.jackson.map.DeserializationContext;
 import org.codehaus.jackson.map.DeserializationProblemHandler;
 import org.codehaus.jackson.map.JsonDeserializer;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.json.simple.JSONObject;
 import org.matmaul.freeboxos.FreeboxException;
 import org.matmaul.freeboxos.FreeboxOsClient;
@@ -56,6 +59,7 @@ public class RestManager {
 		httpClient = HttpClientBuilder.create().build();
 		jsonMapper = new ObjectMapper();
 		jsonMapper.enable(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
+		jsonMapper.setSerializationInclusion(JsonSerialize.Inclusion.NON_NULL);
 		jsonMapper.getDeserializationConfig().addHandler(new DeserializationProblemHandler() {
 
 			@Override
@@ -76,11 +80,21 @@ public class RestManager {
 		return baseAddress;
 	}
 
-	public static HttpEntity createMultipartEntity(InputStream content, long length, String fileName) throws IOException {
+	public HttpEntity createMultipartEntity(InputStream content, long length, String fileName) throws IOException {
 		return MultipartEntityBuilder.create().addPart(fileName, new InpuStreamBody(content, length, fileName)).build();
 	}
 
-	public static HttpEntity createJsonEntity(JSONObject jsonObj) {
+	public HttpEntity createJsonEntity(Object serializableObject) throws FreeboxException {
+		StringWriter w = new StringWriter();
+		try {
+			jsonMapper.writeValue(w, serializableObject);
+		} catch (Exception e) {
+			throw new FreeboxException(e);
+		}
+		return new StringEntity(w.toString(), ContentType.APPLICATION_JSON);
+	}
+
+	public HttpEntity createJsonEntity(JSONObject jsonObj) {
 		return new StringEntity(jsonObj.toString(), ContentType.APPLICATION_JSON);
 	}
 
@@ -106,6 +120,12 @@ public class RestManager {
 			((ActiveBean) result).setClient(client);
 		}
 		return result;
+	}
+
+	public <T extends Response<F>, F> F put(String path, HttpEntity entity, Class<T> beanClass) throws FreeboxException {
+		HttpPut put = new HttpPut(getBaseAddress() + path);
+		put.setEntity(entity);
+		return execute(put, beanClass, true);
 	}
 
 	public <T extends Response<F>, F> F post(String path, HttpEntity entity, Class<T> beanClass) throws FreeboxException {
@@ -138,7 +158,7 @@ public class RestManager {
 		try {
 			return readValue(execute(req, retryAuth), beanClass);
 		} catch (FreeboxException e) {
-			if (retryAuth && AUTHORIZATION_REQUIRED.equals(e.getErrorCode())) {
+			if (retryAuth && AUTHORIZATION_REQUIRED.equals(e.getResponse().getErrorCode())) {
 				loginManager.openSession();
 				return execute(req, beanClass, false);
 			}

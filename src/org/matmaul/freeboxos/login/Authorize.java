@@ -30,7 +30,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 @JsonIgnoreProperties({ "password_salt", "challenge" })
 public class Authorize {
 	protected String app_token;
-	protected int track_id;
+	protected Integer track_id;
 
 	/**
 	 * @return the app_token
@@ -42,7 +42,7 @@ public class Authorize {
 	/**
 	 * @return the track_id
 	 */
-	public int getTrackId() {
+	public Integer getTrackId() {
 		return track_id;
 	}
 }

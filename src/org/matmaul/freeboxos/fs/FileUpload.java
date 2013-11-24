@@ -23,20 +23,20 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class FileUpload {
-	protected long id;
-	protected long size;
-	protected long uploaded;
-	protected long start_date;
-	protected long last_update;
+	protected Long id;
+	protected Long size;
+	protected Long uploaded;
+	protected Long start_date;
+	protected Long last_update;
 	protected String status;
 	protected String dirname;
 	protected String upload_name;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public long getLastUpdate() {
+	public Long getLastUpdate() {
 		return last_update;
 	}
 
@@ -44,7 +44,7 @@ public class FileUpload {
 		return dirname;
 	}
 
-	public long getStartDate() {
+	public Long getStartDate() {
 		return start_date;
 	}
 
@@ -52,11 +52,11 @@ public class FileUpload {
 		return upload_name;
 	}
 
-	public long getUploaded() {
+	public Long getUploaded() {
 		return uploaded;
 	}
 
-	public long getSize() {
+	public Long getSize() {
 		return size;
 	}
 

@@ -46,7 +46,7 @@ public class LoginManager {
 		req.put("app_name", appName);
 		req.put("app_version", appVersion);
 		req.put("device_name", deviceName);
-		Authorize authorize = restManager.post("login/authorize/", RestManager.createJsonEntity(req), LoginResponses.AuthorizeResponse.class, false);
+		Authorize authorize = restManager.post("login/authorize/", restManager.createJsonEntity(req), LoginResponses.AuthorizeResponse.class, false);
 		setTrackId(authorize.getTrackId());
 		setAppToken(authorize.getAppToken());
 		return authorize;
@@ -72,7 +72,7 @@ public class LoginManager {
 
 	public String trackAuthorize() throws FreeboxException {
 		if (trackId == null) {
-			throw new FreeboxException(null, "no trackId");
+			throw new FreeboxException("no trackId");
 		}
 		return restManager.get("login/authorize/" + trackId, LoginResponses.TrackAuthorizeResponse.class, false).getStatus();
 	}
@@ -84,14 +84,14 @@ public class LoginManager {
 	@SuppressWarnings("unchecked")
 	public String openSession() throws FreeboxException {
 		if (appToken == null) {
-			throw new FreeboxException(null, "no appToken");
+			throw new FreeboxException("no appToken");
 		}
 		String challenge = login();
 		JSONObject req = new JSONObject();
 		req.put("app_id", appId);
 		req.put("password", hmacSha1(appToken, challenge));
 
-		Session session = restManager.post("login/session/", RestManager.createJsonEntity(req), LoginResponses.SessionResponse.class, false);
+		Session session = restManager.post("login/session/", restManager.createJsonEntity(req), LoginResponses.SessionResponse.class, false);
 		sessionToken = session.getSessionToken();
 		return sessionToken;
 	}

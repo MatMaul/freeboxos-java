@@ -23,49 +23,49 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
 public class FsTask {
-	protected long id;
-	protected long created_ts;
-	protected long started_ts;
-	protected long done_ts;
-	protected int duration;
-	protected int progress;
-	protected int eta;
+	protected Long id;
+	protected Long created_ts;
+	protected Long started_ts;
+	protected Long done_ts;
+	protected Integer duration;
+	protected Integer progress;
+	protected Integer eta;
 	protected String type;
 	protected String state;
 	protected String error;
 	protected String from;
-	protected int nfiles;
-	protected int nfiles_done;
-	protected long total_bytes;
-	protected long total_bytes_done;
-	protected long curr_bytes;
-	protected long curr_bytes_done;
+	protected Integer nfiles;
+	protected Integer nfiles_done;
+	protected Long total_bytes;
+	protected Long total_bytes_done;
+	protected Long curr_bytes;
+	protected Long curr_bytes_done;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public long getCreatedTimestamp() {
+	public Long getCreatedTimestamp() {
 		return created_ts;
 	}
 
-	public long getStartedTimestamp() {
+	public Long getStartedTimestamp() {
 		return started_ts;
 	}
 
-	public long getDoneTimestamp() {
+	public Long getDoneTimestamp() {
 		return done_ts;
 	}
 
-	public int getDuration() {
+	public Integer getDuration() {
 		return duration;
 	}
 
-	public int getProgress() {
+	public Integer getProgress() {
 		return progress;
 	}
 
-	public int getEta() {
+	public Integer getEta() {
 		return eta;
 	}
 
@@ -85,27 +85,27 @@ public class FsTask {
 		return from;
 	}
 
-	public int getNfiles() {
+	public Integer getNfiles() {
 		return nfiles;
 	}
 
-	public int getNfilesDone() {
+	public Integer getNfilesDone() {
 		return nfiles_done;
 	}
 
-	public long getTotalBytes() {
+	public Long getTotalBytes() {
 		return total_bytes;
 	}
 
-	public long getTotalBytesDone() {
+	public Long getTotalBytesDone() {
 		return total_bytes_done;
 	}
 
-	public long getCurrentBytes() {
+	public Long getCurrentBytes() {
 		return curr_bytes;
 	}
 
-	public long getCurrentBytesDone() {
+	public Long getCurrentBytesDone() {
 		return curr_bytes_done;
 	}
 }
