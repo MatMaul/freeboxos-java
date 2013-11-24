@@ -21,6 +21,7 @@ package org.matmaul.freeboxos.fs;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +45,11 @@ public class FsManager {
 	}
 
 	public List<FsTask> getFsTasks() throws FreeboxException {
-		return restManager.get("fs/tasks/", FsResponses.FsTasksResponse.class);
+		List<FsTask> l = restManager.get("fs/tasks/", FsResponses.FsTasksResponse.class);
+		if (l == null) {
+			l = Collections.emptyList();
+		}
+		return l;
 	}
 
 	public FsTask getFsTask(long id) throws FreeboxException {
@@ -103,8 +108,10 @@ public class FsManager {
 	protected Map<String, FileInfo> lsEncoded(String encodedPath) throws FreeboxException {
 		List<FileInfo> fileInfos = restManager.get("fs/ls/" + encodedPath, FsResponses.FileInfosResponse.class);
 		LinkedHashMap<String, FileInfo> map = new LinkedHashMap<String, FileInfo>();
-		for (FileInfo fileInfo : fileInfos) {
-			map.put(fileInfo.getName(), fileInfo);
+		if (fileInfos != null) {
+			for (FileInfo fileInfo : fileInfos) {
+				map.put(fileInfo.getName(), fileInfo);
+			}
 		}
 		return map;
 	}
@@ -159,7 +166,11 @@ public class FsManager {
 	}
 
 	public List<FileUpload> listUploads() throws FreeboxException {
-		return restManager.get("upload/", FsResponses.FileUploadsResponse.class);
+		List<FileUpload> l = restManager.get("upload/", FsResponses.FileUploadsResponse.class);
+		if (l == null) {
+			l = Collections.emptyList();
+		}
+		return l;
 	}
 
 	public void deleteUpload(long id) throws FreeboxException {
@@ -175,6 +186,10 @@ public class FsManager {
 	}
 
 	public List<ShareLink> getShareLinks() throws FreeboxException {
-		return restManager.get("share_link/", FsResponses.ShareLinksResponse.class);
+		List<ShareLink> l = restManager.get("share_link/", FsResponses.ShareLinksResponse.class);
+		if (l == null) {
+			l = Collections.emptyList();
+		}
+		return l;
 	}
 }

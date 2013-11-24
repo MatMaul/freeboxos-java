@@ -16,19 +16,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.internal;
+package org.matmaul.freeboxos.connection;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
+import org.matmaul.freeboxos.FreeboxException;
+import org.matmaul.freeboxos.internal.RestManager;
 
-@JsonAutoDetect(fieldVisibility = Visibility.ANY)
-public class IdHolder {
-	protected long id;
+public class ConnectionManager {
+	protected RestManager restManager;
 
-	public long getId() {
-		return id;
+	public ConnectionManager(RestManager restManager) {
+		this.restManager = restManager;
 	}
 
-	public static class Response extends org.matmaul.freeboxos.internal.Response<IdHolder> {
+	public ConnectionConfiguration getCurrentConfiguration() throws FreeboxException {
+		return restManager.get("connection/config/", ConnectionResponses.ConnectionConfigurationResponse.class);
 	}
 }
