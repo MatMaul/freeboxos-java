@@ -16,14 +16,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client.internal;
+package org.matmaul.freeboxos.internal;
 
 import java.util.List;
 
-import org.matmaul.freeboxos.client.Authorize;
-import org.matmaul.freeboxos.client.fs.FileInfo;
-import org.matmaul.freeboxos.client.fs.FileUpload;
-import org.matmaul.freeboxos.client.fs.FsTask;
+import org.matmaul.freeboxos.Authorize;
+import org.matmaul.freeboxos.fs.FileInfo;
+import org.matmaul.freeboxos.fs.FileUpload;
+import org.matmaul.freeboxos.fs.FsTask;
 
 /**
  * @author matmaul

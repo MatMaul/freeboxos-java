@@ -16,51 +16,64 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client.fs;
+package org.matmaul.freeboxos.internal;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
+import org.matmaul.freeboxos.FreeboxException;
 
+/**
+ * @author matmaul
+ *
+ */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
-public class FileUpload {
-	protected long id;
-	protected long size;
-	protected long uploaded;
-	protected long start_date;
-	protected long last_update;
-	protected String status;
-	protected String dirname;
-	protected String upload_name;
-	
-	public long getId() {
-		return id;
+public class Response<T> {
+	protected boolean success;
+	protected String error_code;
+	protected String uid;
+	protected String msg;
+	protected T result;
+
+	/**
+	 * @return the result
+	 * @throws FreeboxException 
+	 */
+	public T getResult() {
+		return result;
 	}
-	
-	public long getLastUpdate() {
-		return last_update;
+
+	public void evaluate() throws FreeboxException {
+		if (!isSuccess()) {
+			throw new FreeboxException(getErrorCode(), getMsg());
+		}
 	}
-	
-	public String getDirname() {
-		return dirname;
+
+	public String getUid() {
+		return uid;
 	}
-	
-	public long getStartDate() {
-		return start_date;
+
+	/**
+	 * @return the success
+	 */
+	public boolean isSuccess() {
+		return success;
 	}
-	
-	public String getUploadName() {
-		return upload_name;
+
+	/**
+	 * @return the error_code
+	 */
+	public String getErrorCode() {
+		return error_code;
 	}
-	
-	public long getUploaded() {
-		return uploaded;
+
+	/**
+	 * @return the msg
+	 */
+	public String getMsg() {
+		return msg;
 	}
-	
-	public long getSize() {
-		return size;
-	}
-	
-	public String getStatus() {
-		return status;
-	}
+
+	public static class StringResponse extends Response<String> {}
+
+	public static class EmptyResponse extends Response<Object> {}
 }

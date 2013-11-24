@@ -16,16 +16,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client.internal;
+package org.matmaul.freeboxos.internal;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.matmaul.freeboxos.client.FreeboxClient;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
-public abstract class ActiveBean {
-	@JsonIgnore
-	protected FreeboxClient client;
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
+public class IdHolder {
+	protected long id;
 	
-	public void setClient(FreeboxClient client) {
-		this.client = client;
+	public long getId() {
+		return id;
 	}
 }

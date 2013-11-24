@@ -16,64 +16,33 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client.internal;
+package org.matmaul.freeboxos;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
-import org.matmaul.freeboxos.client.FreeboxException;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * @author matmaul
  *
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
-public class Response<T> {
-	protected boolean success;
-	protected String error_code;
-	protected String uid;
-	protected String msg;
-	protected T result;
-
+@JsonIgnoreProperties({ "password_salt", "challenge" })
+public class Authorize {
+	protected String app_token;
+	protected int track_id;
+	
 	/**
-	 * @return the result
-	 * @throws FreeboxException 
+	 * @return the app_token
 	 */
-	public T getResult() {
-		return result;
+	public String getAppToken() {
+		return app_token;
 	}
-
-	public void evaluate() throws FreeboxException {
-		if (!isSuccess()) {
-			throw new FreeboxException(getErrorCode(), getMsg());
-		}
-	}
-
-	public String getUid() {
-		return uid;
-	}
-
+	
 	/**
-	 * @return the success
+	 * @return the track_id
 	 */
-	public boolean isSuccess() {
-		return success;
+	public int getTrackId() {
+		return track_id;
 	}
-
-	/**
-	 * @return the error_code
-	 */
-	public String getErrorCode() {
-		return error_code;
-	}
-
-	/**
-	 * @return the msg
-	 */
-	public String getMsg() {
-		return msg;
-	}
-
-	public static class StringResponse extends Response<String> {}
-
-	public static class EmptyResponse extends Response<Object> {}
 }

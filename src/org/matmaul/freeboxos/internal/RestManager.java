@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client.internal;
+package org.matmaul.freeboxos.internal;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,20 +40,20 @@ import org.codehaus.jackson.map.DeserializationProblemHandler;
 import org.codehaus.jackson.map.JsonDeserializer;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONObject;
-import org.matmaul.freeboxos.client.FreeboxClient;
-import org.matmaul.freeboxos.client.FreeboxException;
-import org.matmaul.freeboxos.client.LoginManager;
+import org.matmaul.freeboxos.FreeboxOsClient;
+import org.matmaul.freeboxos.FreeboxException;
+import org.matmaul.freeboxos.LoginManager;
 
 public class RestManager {
 	protected HttpClient httpClient;
 	protected ObjectMapper jsonMapper;
-	protected FreeboxClient freeboxClient;
+	protected FreeboxOsClient client;
 	protected String baseAddress;
 	protected LoginManager loginManager;
 
 	
-	public RestManager(FreeboxClient freeboxClient, String host) {
-		this.freeboxClient = freeboxClient;
+	public RestManager(FreeboxOsClient client, String host) {
+		this.client = client;
 		this.baseAddress = "http://" + host + "/api/v1/";
 		httpClient = HttpClientBuilder.create().build();
 		jsonMapper = new ObjectMapper();
@@ -108,7 +108,7 @@ public class RestManager {
 		response.evaluate();
 		F result = response.getResult();
 		if (result instanceof ActiveBean) {
-			((ActiveBean)result).setClient(freeboxClient);
+			((ActiveBean)result).setClient(client);
 		}
 		return result;
 	}

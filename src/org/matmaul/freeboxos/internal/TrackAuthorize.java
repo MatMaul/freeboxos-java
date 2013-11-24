@@ -16,40 +16,31 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client;
+package org.matmaul.freeboxos.internal;
 
-import org.matmaul.freeboxos.client.fs.FsManager;
-import org.matmaul.freeboxos.client.internal.RestManager;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
 /**
  * @author matmaul
  *
  */
-public class FreeboxClient {
-	protected FsManager fsManager;
-	protected RestManager restManager;
-	protected LoginManager loginManager;
-
-	public FreeboxClient(String appId) {
-		this(appId, "mafreebox.freebox.fr");
-	}
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
+public class TrackAuthorize {
+	protected String status;
+	protected String challenge;
 	
-	public FreeboxClient(String appId, String host) {
-		restManager = new RestManager(this, host);
-		loginManager = new LoginManager(appId, restManager);
-		restManager.setLoginManager(loginManager);;
-		fsManager = new FsManager(restManager);
-	}
-	
-	public LoginManager getLoginManager() {
-		return loginManager;
-	}
-	
-	public RestManager getRestManager() {
-		return restManager;
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
 	}
 
-	public FsManager getFsManager() {
-		return fsManager;
+	/**
+	 * @return the challenge
+	 */
+	public String getChallenge() {
+		return challenge;
 	}
 }

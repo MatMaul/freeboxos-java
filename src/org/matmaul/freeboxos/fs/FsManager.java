@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client.fs;
+package org.matmaul.freeboxos.fs;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,11 +27,11 @@ import java.util.Map;
 
 import org.apache.http.client.methods.HttpGet;
 import org.json.simple.JSONObject;
-import org.matmaul.freeboxos.client.FreeboxException;
-import org.matmaul.freeboxos.client.internal.RestManager;
-import org.matmaul.freeboxos.client.internal.Response;
-import org.matmaul.freeboxos.client.internal.Response.EmptyResponse;
-import org.matmaul.freeboxos.client.internal.Responses;
+import org.matmaul.freeboxos.FreeboxException;
+import org.matmaul.freeboxos.internal.Response;
+import org.matmaul.freeboxos.internal.Responses;
+import org.matmaul.freeboxos.internal.RestManager;
+import org.matmaul.freeboxos.internal.Response.EmptyResponse;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;

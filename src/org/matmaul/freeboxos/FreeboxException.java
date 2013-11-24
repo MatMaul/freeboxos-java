@@ -16,33 +16,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client;
-
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+package org.matmaul.freeboxos;
 
 /**
  * @author matmaul
  *
  */
-@JsonAutoDetect(fieldVisibility = Visibility.ANY)
-@JsonIgnoreProperties({ "password_salt", "challenge" })
-public class Authorize {
-	protected String app_token;
-	protected int track_id;
-	
+public class FreeboxException extends Exception {
+
 	/**
-	 * @return the app_token
+	 * 
 	 */
-	public String getAppToken() {
-		return app_token;
+	private static final long serialVersionUID = -5403009193715290205L;
+	protected String errorCode;
+
+	/**
+	 * 
+	 */
+	public FreeboxException(String errorCode, String msg) {
+		super(msg);
+		this.errorCode = errorCode;
 	}
 	
 	/**
-	 * @return the track_id
+	 * 
 	 */
-	public int getTrackId() {
-		return track_id;
+	public FreeboxException(Throwable t) {
+		super(t);
+	}
+
+	/**
+	 * @return the errorCode
+	 */
+	public String getErrorCode() {
+		return errorCode;
 	}
 }

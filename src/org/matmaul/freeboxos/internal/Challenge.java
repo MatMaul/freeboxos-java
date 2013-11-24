@@ -16,39 +16,28 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client;
+package org.matmaul.freeboxos.internal;
+
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
 /**
  * @author matmaul
  *
  */
-public class FreeboxException extends Exception {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5403009193715290205L;
-	protected String errorCode;
-
-	/**
-	 * 
-	 */
-	public FreeboxException(String errorCode, String msg) {
-		super(msg);
-		this.errorCode = errorCode;
-	}
+@JsonAutoDetect(fieldVisibility = Visibility.ANY)
+public class Challenge {
+	protected boolean logged_in;
+	protected String challenge;
 	
-	/**
-	 * 
-	 */
-	public FreeboxException(Throwable t) {
-		super(t);
+	public boolean isLoggedIn() {
+		return logged_in;
 	}
 
 	/**
-	 * @return the errorCode
+	 * @return the challenge
 	 */
-	public String getErrorCode() {
-		return errorCode;
+	public String getChallenge() {
+		return challenge;
 	}
 }

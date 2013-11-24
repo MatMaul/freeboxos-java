@@ -16,16 +16,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client;
+package org.matmaul.freeboxos;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Hex;
 import org.json.simple.JSONObject;
-import org.matmaul.freeboxos.client.internal.RestManager;
-import org.matmaul.freeboxos.client.internal.Responses;
-import org.matmaul.freeboxos.client.internal.Session;
+import org.matmaul.freeboxos.internal.Responses;
+import org.matmaul.freeboxos.internal.RestManager;
+import org.matmaul.freeboxos.internal.Session;
 
 public class LoginManager {
 

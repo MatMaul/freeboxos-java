@@ -16,41 +16,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.client.internal;
+package org.matmaul.freeboxos.internal;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.matmaul.freeboxos.FreeboxOsClient;
 
-/**
- * @author matmaul
- *
- */
-@JsonAutoDetect(fieldVisibility = Visibility.ANY)
-public class Session {
-	protected String session_token;
-	protected Permissions permissions;
-
-	/**
-	 * @return the session_token
-	 */
-	public String getSessionToken() {
-		return session_token;
-	}
-
-	/**
-	 * @return the permissions
-	 */
-	public Permissions getPermissions() {
-		return permissions;
-	}
+public abstract class ActiveBean {
+	@JsonIgnore
+	protected FreeboxOsClient client;
 	
-	@JsonAutoDetect(fieldVisibility = Visibility.ANY)
-	public static class Permissions {
-		protected boolean downloader;
-		protected boolean settings;
-		protected boolean contacts;
-		protected boolean calls;
-		protected boolean explorer;
-		protected boolean parental;
+	public void setClient(FreeboxOsClient client) {
+		this.client = client;
 	}
 }
