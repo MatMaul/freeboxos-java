@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Mathieu Velten. All rights reserved.
+ * Copyright (c) 2013, Gaël L'hopital All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -16,14 +16,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.connection;
+package org.matmaul.freeboxos.system;
 
 import org.matmaul.freeboxos.internal.Response;
 
-public class ConnectionResponses {
-	public static class ConnectionConfigurationResponse extends Response<ConnectionConfiguration> {
-	}
-	public static class ConnectionStatusResponse extends Response<ConnectionStatus> {
-	}
-
+public class SystemResponses {
+	public static class SystemConfigurationResponse extends Response<SystemConfiguration> {}
+	public static class SystemRebootResponse extends Response<SystemReboot> {}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Mathieu Velten. All rights reserved.
+ * Copyright (c) 2013, Gaël L'hopital. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -16,50 +16,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.login;
+package org.matmaul.freeboxos.system;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
-/**
- * @author matmaul
- * 
- */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
-public class TrackAuthorize {
-	protected String status;
-	protected String challenge;
-	
-	/**
-	 * @return the status
-	 */
-	//public String getStatus() {
-	//	return status;
-	//}
-	
-	public TrackAuthorizeStatus getStatus() {
-		return TrackAuthorizeStatus.valueOf(status.toUpperCase());
-	}
-	
-	public String getStatusAsString() {
-		switch (getStatus()) {
-		case DENIED: 
-			return "Authorization request denied by user";
-		case TIMEOUT: 
-			return "Authorization request not handled in time";
-		case GRANTED:
-			return "Valid appToken";
-		case PENDING:
-			return "Processing authorization request";
-		default: 
-			return "Invalid or revocked appToken";
-		}
-	}
-	
-	/**
-	 * @return the challenge
-	 */
-	public String getChallenge() {
-		return challenge;
-	}
+public class SystemReboot {
 }

@@ -67,10 +67,14 @@ public class LoginManager {
 	public void setAppToken(String appToken) {
 		this.appToken = appToken;
 	}
+	
+	public boolean isConnected() {
+		return !((sessionToken==null) || sessionToken.isEmpty());
+	}
 
 	public static final String AUTHORIZE_GRANTED = "granted";
 
-	public String trackAuthorize() throws FreeboxException {
+	public TrackAuthorizeStatus trackAuthorize() throws FreeboxException {
 		if (trackId == null) {
 			throw new FreeboxException("no trackId");
 		}

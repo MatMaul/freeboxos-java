@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Mathieu Velten. All rights reserved.
+ * Copyright (c) 2013, Gaël L'hopital. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -16,27 +16,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.connection;
+package org.matmaul.freeboxos.system;
 
 import org.matmaul.freeboxos.FreeboxException;
 import org.matmaul.freeboxos.internal.RestManager;
 
-public class ConnectionManager {
+public class SystemManager {
 	protected RestManager restManager;
 
-	public ConnectionManager(RestManager restManager) {
+	public SystemManager(RestManager restManager) {
 		this.restManager = restManager;
 	}
 
-	public ConnectionConfiguration getConfiguration() throws FreeboxException {
-		return restManager.get("connection/config/", ConnectionResponses.ConnectionConfigurationResponse.class);
-	}
-
-	public ConnectionConfiguration updateConfiguration(ConnectionConfiguration configuration) throws FreeboxException {
-		return restManager.put("connection/config/", restManager.createJsonEntity(configuration), ConnectionResponses.ConnectionConfigurationResponse.class);
+	public SystemConfiguration getConfiguration() throws FreeboxException {
+		return restManager.get("system/", SystemResponses.SystemConfigurationResponse.class);
 	}
 	
-	public ConnectionStatus getStatus() throws FreeboxException {
-		return restManager.get("connection/", ConnectionResponses.ConnectionStatusResponse.class);
+	public SystemReboot Reboot() throws FreeboxException  {	// pas testé !
+		SystemReboot reboot = new SystemReboot();
+		return restManager.put("system/reboot/", restManager.createJsonEntity(reboot), SystemResponses.SystemRebootResponse.class);
 	}
+
 }

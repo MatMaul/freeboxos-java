@@ -19,9 +19,13 @@
 package org.matmaul.freeboxos;
 
 import org.matmaul.freeboxos.connection.ConnectionManager;
+import org.matmaul.freeboxos.system.SystemManager;
 import org.matmaul.freeboxos.fs.FsManager;
 import org.matmaul.freeboxos.internal.RestManager;
 import org.matmaul.freeboxos.login.LoginManager;
+import org.matmaul.freeboxos.call.CallManager;
+import org.matmaul.freeboxos.wifi.WifiManager;
+
 
 /**
  * @author matmaul
@@ -32,6 +36,9 @@ public class FreeboxOsClient {
 	protected RestManager restManager;
 	protected LoginManager loginManager;
 	protected ConnectionManager connectionManager;
+	protected SystemManager systemManager;
+	protected CallManager callManager;
+	protected WifiManager wifiManager;
 
 	public FreeboxOsClient(String appId) {
 		this(appId, "mafreebox.freebox.fr");
@@ -43,6 +50,9 @@ public class FreeboxOsClient {
 		restManager.setLoginManager(loginManager);
 		fsManager = new FsManager(restManager);
 		connectionManager = new ConnectionManager(restManager);
+		systemManager = new SystemManager(restManager);
+		callManager = new CallManager(restManager);
+		wifiManager = new WifiManager(restManager);
 	}
 
 	public LoginManager getLoginManager() {
@@ -59,5 +69,17 @@ public class FreeboxOsClient {
 
 	public ConnectionManager getConnectionManager() {
 		return connectionManager;
+	}
+	
+	public SystemManager getSystemManager() {
+		return systemManager;
+	}
+	
+	public CallManager getCallManager() {
+		return callManager;
+	}
+	
+	public WifiManager getWifiManager() {
+		return wifiManager;
 	}
 }
