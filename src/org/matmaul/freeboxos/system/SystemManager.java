@@ -32,9 +32,9 @@ public class SystemManager {
 		return restManager.get("system/", SystemResponses.SystemConfigurationResponse.class);
 	}
 	
-	public SystemReboot Reboot() throws FreeboxException  {	// pas testé !
+	public SystemReboot Reboot() throws FreeboxException  {
 		SystemReboot reboot = new SystemReboot();
-		return restManager.put("system/reboot/", restManager.createJsonEntity(reboot), SystemResponses.SystemRebootResponse.class);
+		return restManager.post("system/reboot/", restManager.createJsonEntity(reboot), SystemResponses.SystemRebootResponse.class);
 	}
 
 }

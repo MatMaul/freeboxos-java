@@ -19,22 +19,26 @@
 package org.matmaul.freeboxos.system;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
+@JsonIgnoreProperties(ignoreUnknown = false)
+
 public class SystemConfiguration {
 	protected String firmware_version;
 	protected String mac;
 	protected String serial;
 	protected String uptime;
 	protected String board_name;
-	protected Integer temp_cpum;
-	protected Integer temp_sw;
-	protected Integer temp_cpub;
-	protected Integer fan_rpm;
+	protected String disk_status;
+	protected long temp_cpum;
+	protected long temp_sw;
+	protected long temp_cpub;
+	protected long fan_rpm;
 	
 	protected String box_authenticated;
-	protected Long uptime_val;
+	protected long uptime_val;
 	
 	public String getFirmware_version() {
 		return firmware_version;
@@ -51,19 +55,22 @@ public class SystemConfiguration {
 	public String getBoard_name() {
 		return board_name;
 	}
-	public Integer getTemp_cpum() {
+	public String getDisk_status() {
+		return disk_status;
+	}
+	public long getTemp_cpum() {
 		return temp_cpum;
 	}
-	public Integer getTemp_sw() {
+	public long getTemp_sw() {
 		return temp_sw;
 	}
-	public Integer getTemp_cpub() {
+	public long getTemp_cpub() {
 		return temp_cpub;
 	}
-	public Integer getFan_rpm() {
+	public long getFan_rpm() {
 		return fan_rpm;
 	}
-	public Long getUptimeVal() {
+	public long getUptimeVal() {
 		return uptime_val;
 	}
 }

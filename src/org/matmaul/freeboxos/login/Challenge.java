@@ -19,6 +19,7 @@
 package org.matmaul.freeboxos.login;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 
 /**
@@ -26,6 +27,8 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
  * 
  */
 @JsonAutoDetect(fieldVisibility = Visibility.ANY)
+@JsonIgnoreProperties(ignoreUnknown = true)
+
 public class Challenge {
 	protected Boolean logged_in;
 	protected String challenge;

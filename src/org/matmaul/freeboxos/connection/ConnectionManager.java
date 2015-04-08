@@ -39,4 +39,8 @@ public class ConnectionManager {
 	public ConnectionStatus getStatus() throws FreeboxException {
 		return restManager.get("connection/", ConnectionResponses.ConnectionStatusResponse.class);
 	}
+	
+	public xDslStatus getxDslStatus() throws FreeboxException {
+		return restManager.get("connection/xdsl/", ConnectionResponses.ConnectionxDslResponse.class);
+	}
 }

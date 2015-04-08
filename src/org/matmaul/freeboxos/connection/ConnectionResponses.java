@@ -25,5 +25,7 @@ public class ConnectionResponses {
 	}
 	public static class ConnectionStatusResponse extends Response<ConnectionStatus> {
 	}
+	public static class ConnectionxDslResponse extends Response<xDslStatus> {		
+	}
 
 }
