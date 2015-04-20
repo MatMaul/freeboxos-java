@@ -18,14 +18,19 @@
  */
 package org.matmaul.freeboxos;
 
+import org.matmaul.freeboxos.airmedia.AirMediaManager;
 import org.matmaul.freeboxos.connection.ConnectionManager;
+import org.matmaul.freeboxos.netshare.NetShareManager;
 import org.matmaul.freeboxos.phone.PhoneManager;
 import org.matmaul.freeboxos.system.SystemManager;
+import org.matmaul.freeboxos.upnpav.UPnPAVManager;
 import org.matmaul.freeboxos.fs.FsManager;
+import org.matmaul.freeboxos.ftp.FtpManager;
 import org.matmaul.freeboxos.internal.RestManager;
 import org.matmaul.freeboxos.login.LoginManager;
 import org.matmaul.freeboxos.call.CallManager;
 import org.matmaul.freeboxos.wifi.WifiManager;
+import org.matmaul.freeboxos.lan.LanManager;
 import org.matmaul.freeboxos.lcd.LCDManager;
 
 
@@ -43,6 +48,11 @@ public class FreeboxOsClient {
 	protected WifiManager wifiManager;
 	protected LCDManager lcdManager;
 	protected PhoneManager phoneManager;
+	protected FtpManager ftpManager;
+	protected AirMediaManager airmediaManager;
+	protected UPnPAVManager upnpavManager;
+	protected NetShareManager netShareManager;
+	protected LanManager lanManager;
 
 	public FreeboxOsClient(String appId) {
 		this(appId, "mafreebox.freebox.fr");
@@ -59,6 +69,11 @@ public class FreeboxOsClient {
 		wifiManager = new WifiManager(restManager);
 		lcdManager = new LCDManager(restManager);
 		phoneManager = new PhoneManager(restManager);
+		ftpManager = new FtpManager(restManager);
+		airmediaManager = new AirMediaManager(restManager);
+		upnpavManager = new UPnPAVManager(restManager);
+		netShareManager = new NetShareManager(restManager);
+		lanManager = new LanManager(restManager);
 	}
 
 	public LoginManager getLoginManager() {
@@ -95,6 +110,26 @@ public class FreeboxOsClient {
 	
 	public PhoneManager getPhoneManager() {
 		return phoneManager;
+	}
+	
+	public FtpManager getFtpManager() {
+		return ftpManager;
+	}
+
+	public AirMediaManager getAirMediaManager() {
+		return airmediaManager;
+	}
+
+	public UPnPAVManager getUPnPAVManager() {
+		return upnpavManager;
+	}
+
+	public NetShareManager getNetShareManager() {
+		return netShareManager;
+	}
+
+	public LanManager getLanManager() {
+		return lanManager;
 	}
 
 }
