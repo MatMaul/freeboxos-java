@@ -23,4 +23,9 @@ import org.matmaul.freeboxos.internal.Response;
 public class ConnectionResponses {
 	public static class ConnectionConfigurationResponse extends Response<ConnectionConfiguration> {
 	}
+	public static class ConnectionStatusResponse extends Response<ConnectionStatus> {
+	}
+	public static class ConnectionxDslResponse extends Response<xDslStatus> {		
+	}
+
 }

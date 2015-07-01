@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Mathieu Velten. All rights reserved.
+ * Copyright (c) 2013, Gaël L'hopital. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -16,31 +16,25 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.login;
+package org.matmaul.freeboxos.system;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
+import org.matmaul.freeboxos.FreeboxException;
+import org.matmaul.freeboxos.internal.RestManager;
 
-/**
- * @author matmaul
- * 
- */
-@JsonAutoDetect(fieldVisibility = Visibility.ANY)
-@JsonIgnoreProperties(ignoreUnknown = true)
+public class SystemManager {
+	protected RestManager restManager;
 
-public class Challenge {
-	protected Boolean logged_in;
-	protected String challenge;
-
-	public Boolean isLoggedIn() {
-		return logged_in;
+	public SystemManager(RestManager restManager) {
+		this.restManager = restManager;
 	}
 
-	/**
-	 * @return the challenge
-	 */
-	public String getChallenge() {
-		return challenge;
+	public SystemConfiguration getConfiguration() throws FreeboxException {
+		return restManager.get("system/", SystemResponses.SystemConfigurationResponse.class);
 	}
+	
+	public SystemReboot Reboot() throws FreeboxException  {
+		SystemReboot reboot = new SystemReboot();
+		return restManager.post("system/reboot/", restManager.createJsonEntity(reboot), SystemResponses.SystemRebootResponse.class);
+	}
+
 }

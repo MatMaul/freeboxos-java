@@ -29,14 +29,33 @@ import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
 public class TrackAuthorize {
 	protected String status;
 	protected String challenge;
-
+	
 	/**
 	 * @return the status
 	 */
-	public String getStatus() {
-		return status;
+	//public String getStatus() {
+	//	return status;
+	//}
+	
+	public TrackAuthorizeStatus getStatus() {
+		return TrackAuthorizeStatus.valueOf(status.toUpperCase());
 	}
-
+	
+	public String getStatusAsString() {
+		switch (getStatus()) {
+		case DENIED: 
+			return "Authorization request denied by user";
+		case TIMEOUT: 
+			return "Authorization request not handled in time";
+		case GRANTED:
+			return "Valid appToken";
+		case PENDING:
+			return "Processing authorization request";
+		default: 
+			return "Invalid or revocked appToken";
+		}
+	}
+	
 	/**
 	 * @return the challenge
 	 */

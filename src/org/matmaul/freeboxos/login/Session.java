@@ -20,6 +20,7 @@ package org.matmaul.freeboxos.login;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 /**
  * @author matmaul
@@ -45,12 +46,15 @@ public class Session {
 	}
 
 	@JsonAutoDetect(fieldVisibility = Visibility.ANY)
+	@JsonIgnoreProperties(ignoreUnknown = true)
 	public static class Permissions {
-		protected Boolean downloader;
 		protected Boolean settings;
 		protected Boolean contacts;
 		protected Boolean calls;
 		protected Boolean explorer;
+		protected Boolean downloader;
 		protected Boolean parental;
+		protected Boolean pvr;
+		protected Boolean tv;							// Added missing -undocumented- property
 	}
 }

@@ -55,7 +55,7 @@ public class RestManager {
 
 	public RestManager(FreeboxOsClient client, String host) {
 		this.client = client;
-		this.baseAddress = "http://" + host + "/api/v1/";
+		this.baseAddress = "http://" + host + "/api/v3/";
 		httpClient = HttpClientBuilder.create().build();
 		jsonMapper = new ObjectMapper();
 		jsonMapper.enable(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY);
@@ -113,6 +113,12 @@ public class RestManager {
 	}
 
 	protected <T extends Response<F>, F> F readValue(InputStream content, Class<T> beanClass) throws IOException, FreeboxException {
+		//boolean test = false;
+
+		//if (test) {
+		//	String st = CharStreams.toString( new InputStreamReader( content ));
+		//	System.out.println(st);
+		//}
 		T response = jsonMapper.readValue(content, beanClass);
 		response.evaluate();
 		F result = response.getResult();

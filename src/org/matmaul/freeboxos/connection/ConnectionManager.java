@@ -35,4 +35,12 @@ public class ConnectionManager {
 	public ConnectionConfiguration updateConfiguration(ConnectionConfiguration configuration) throws FreeboxException {
 		return restManager.put("connection/config/", restManager.createJsonEntity(configuration), ConnectionResponses.ConnectionConfigurationResponse.class);
 	}
+	
+	public ConnectionStatus getStatus() throws FreeboxException {
+		return restManager.get("connection/", ConnectionResponses.ConnectionStatusResponse.class);
+	}
+	
+	public xDslStatus getxDslStatus() throws FreeboxException {
+		return restManager.get("connection/xdsl/", ConnectionResponses.ConnectionxDslResponse.class);
+	}
 }

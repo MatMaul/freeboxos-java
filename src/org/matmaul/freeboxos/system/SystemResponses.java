@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, Mathieu Velten. All rights reserved.
+ * Copyright (c) 2013, Gaël L'hopital All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -16,31 +16,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package org.matmaul.freeboxos.login;
+package org.matmaul.freeboxos.system;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.codehaus.jackson.annotate.JsonAutoDetect.Visibility;
+import org.matmaul.freeboxos.internal.Response;
 
-/**
- * @author matmaul
- * 
- */
-@JsonAutoDetect(fieldVisibility = Visibility.ANY)
-@JsonIgnoreProperties(ignoreUnknown = true)
-
-public class Challenge {
-	protected Boolean logged_in;
-	protected String challenge;
-
-	public Boolean isLoggedIn() {
-		return logged_in;
-	}
-
-	/**
-	 * @return the challenge
-	 */
-	public String getChallenge() {
-		return challenge;
-	}
+public class SystemResponses {
+	public static class SystemConfigurationResponse extends Response<SystemConfiguration> {}
+	public static class SystemRebootResponse extends Response<SystemReboot> {}
 }
