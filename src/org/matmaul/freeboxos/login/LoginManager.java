@@ -90,7 +90,11 @@ public class LoginManager {
 		if (appToken == null) {
 			throw new FreeboxException("no appToken");
 		}
+		sessionToken = null;
 		String challenge = login();
+		if ((challenge == null) || challenge.isEmpty()) {
+			throw new FreeboxException("no challenge provided for login");
+		}
 		JSONObject req = new JSONObject();
 		req.put("app_id", appId);
 		req.put("password", hmacSha1(appToken, challenge));

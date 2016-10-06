@@ -5,7 +5,7 @@
 
 	<groupId>org.matmaul.freeboxos</groupId>
 	<artifactId>freeboxos-client</artifactId>
-	<version>0.3.7</version>
+	<version>0.3.9</version>
 
 	<name>freeboxos-client</name>
 	<url>https://github.com/matmaul/freeboxos-java</url>
