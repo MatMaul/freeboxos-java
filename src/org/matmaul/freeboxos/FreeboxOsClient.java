@@ -59,7 +59,16 @@ public class FreeboxOsClient {
 	}
 
 	public FreeboxOsClient(String appId, String host) {
-		restManager = new RestManager(this, host);
+		this(appId, false, host, "/api/", "4.0");
+	}
+
+	public FreeboxOsClient(String appId, boolean useHttps, String host, String apiBaseUrl, String ApiVersion) {
+		String[] versionSplit = ApiVersion.split(".");
+		String majorVersion = "4";
+		if (versionSplit.length > 0) {
+			majorVersion = versionSplit[0];
+		}
+		restManager = new RestManager(this, useHttps, host, apiBaseUrl, majorVersion);
 		loginManager = new LoginManager(appId, restManager);
 		restManager.setLoginManager(loginManager);
 		fsManager = new FsManager(restManager);
@@ -75,7 +84,7 @@ public class FreeboxOsClient {
 		netShareManager = new NetShareManager(restManager);
 		lanManager = new LanManager(restManager);
 	}
-
+	
 	public LoginManager getLoginManager() {
 		return loginManager;
 	}

@@ -36,9 +36,10 @@ public class SystemConfiguration {
 	protected long temp_sw;
 	protected long temp_cpub;
 	protected long fan_rpm;
-	
-	protected String box_authenticated;
 	protected long uptime_val;
+	protected boolean box_authenticated;
+	protected String box_flavor;
+	protected String user_main_storage;
 	
 	public String getFirmware_version() {
 		return firmware_version;
@@ -72,5 +73,14 @@ public class SystemConfiguration {
 	}
 	public long getUptimeVal() {
 		return uptime_val;
+	}
+	public boolean getBoxAuthenticated() {
+		return box_authenticated;
+	}
+	public String getBoxFlavor() {
+		return box_flavor;
+	}
+	public String getUserMainStorage() {
+		return user_main_storage;
 	}
 }

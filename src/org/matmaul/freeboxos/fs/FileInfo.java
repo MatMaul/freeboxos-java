@@ -50,6 +50,7 @@ public class FileInfo extends ActiveBean {
 	protected Long modification;
 	protected Long size;
 	protected Long index;
+	protected Long filecount;
 
 	/**
 	 * @return the type
@@ -126,6 +127,13 @@ public class FileInfo extends ActiveBean {
 	 */
 	public Long getIndex() {
 		return index;
+	}
+
+	/**
+	 * @return the number of files inside directory
+	 */
+	public Long getFileCount() {
+		return filecount;
 	}
 
 	public static FileInfo create(String path) {

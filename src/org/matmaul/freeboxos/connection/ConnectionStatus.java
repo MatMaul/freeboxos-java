@@ -38,6 +38,7 @@ public class ConnectionStatus {
     public Long bytes_down; 		// Read-only total downloaded bytes since last connection
     public Long bytes_up_priv; 		// Read-only total uploaded bytes since last connection for Freebox services
     public Long bytes_down_priv;	// Read-only total downloaded bytes since last connection for Freebox services
+    public Long[] ipv4_port_range;
     
 	public String getState() {
 		return state;
@@ -83,5 +84,8 @@ public class ConnectionStatus {
 	}
 	public Long getBytes_down_priv() {
 		return bytes_down_priv;
+	}
+	public Long[] getIpv4_port_range() {
+		return ipv4_port_range;
 	}
 }

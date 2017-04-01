@@ -53,9 +53,9 @@ public class RestManager {
 	protected String baseAddress;
 	protected LoginManager loginManager;
 
-	public RestManager(FreeboxOsClient client, String host) {
+	public RestManager(FreeboxOsClient client, boolean useHttps, String host, String apiBaseUrl, String ApiMajorVersion) {
 		this.client = client;
-		this.baseAddress = "http://" + host + "/api/v3/";
+		this.baseAddress = (useHttps ? "https://" : "http://") + host + apiBaseUrl + "v" + ApiMajorVersion + "/";
 		httpClient = HttpClientBuilder.create().build();
 		jsonMapper = new ObjectMapper();
 		jsonMapper.enable(DeserializationConfig.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY);

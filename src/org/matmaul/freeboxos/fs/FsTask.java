@@ -34,12 +34,14 @@ public class FsTask {
 	protected String state;
 	protected String error;
 	protected String from;
+	protected String to;
 	protected Integer nfiles;
 	protected Integer nfiles_done;
 	protected Long total_bytes;
 	protected Long total_bytes_done;
 	protected Long curr_bytes;
 	protected Long curr_bytes_done;
+	protected Long rate;
 
 	public Long getId() {
 		return id;
@@ -85,6 +87,10 @@ public class FsTask {
 		return from;
 	}
 
+	public String getTo() {
+		return to;
+	}
+
 	public Integer getNfiles() {
 		return nfiles;
 	}
@@ -107,5 +113,9 @@ public class FsTask {
 
 	public Long getCurrentBytesDone() {
 		return curr_bytes_done;
+	}
+
+	public Long getRate() {
+		return rate;
 	}
 }
