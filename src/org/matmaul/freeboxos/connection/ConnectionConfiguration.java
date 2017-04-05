@@ -27,6 +27,8 @@ public class ConnectionConfiguration {
 	protected Boolean is_secure_pass;
 	protected Boolean remote_access;
 	protected Integer remote_access_port;
+	protected Integer remote_access_min_port;
+	protected Integer remote_access_max_port;
 	protected String remote_access_ip;
 	protected Boolean api_remote_access;
 	protected Boolean wol;
@@ -50,8 +52,24 @@ public class ConnectionConfiguration {
 		return remote_access;
 	}
 
+	public void setRemoteAccess(Boolean remote_access) {
+		this.remote_access = remote_access;
+	}
+
 	public Integer getRemoteAccessPort() {
 		return remote_access_port;
+	}
+
+	public void setRemoteAccessPort(Integer remote_access_port) {
+		this.remote_access_port = remote_access_port;
+	}
+
+	public Integer getRemoteAccessMinPort() {
+		return remote_access_min_port;
+	}
+
+	public Integer getRemoteAccessMaxPort() {
+		return remote_access_max_port;
 	}
 
 	public String getRemoteAccessIp() {

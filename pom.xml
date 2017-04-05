@@ -5,7 +5,7 @@
 
 	<groupId>org.matmaul.freeboxos</groupId>
 	<artifactId>freeboxos-client</artifactId>
-	<version>0.3.9</version>
+	<version>0.4.0</version>
 
 	<name>freeboxos-client</name>
 	<url>https://github.com/matmaul/freeboxos-java</url>
@@ -159,7 +159,7 @@
 			<dependency>
 				<groupId>com.googlecode.json-simple</groupId>
 				<artifactId>json-simple</artifactId>
-				<version>1.1</version>
+				<version>1.1.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.codehaus.jackson</groupId>

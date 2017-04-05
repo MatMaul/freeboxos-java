@@ -54,9 +54,6 @@ public class FtpConfig {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public void setWeakPassword(Boolean weak_password) {
-		this.weak_password = weak_password;
-	}
 	public void setAllowRemoteAccess(Boolean allow_remote_access) {
 		this.allow_remote_access = allow_remote_access;
 	}
